@@ -58,14 +58,7 @@ function HeroAction({ kind, className, children }) {
   );
 }
 
-// Variantes mobiles comparées en missions 005-006 (aucun effet sur desktop).
-const MOBILE_VARIANT_CLASS = {
-  a: styles.mobileA,
-  b: styles.mobileB,
-  b1: styles.mobileB1,
-};
-
-export default function HeroElise({ mobileVariant }) {
+export default function HeroElise() {
   const {
     props: { srcSet: mobileSrcSet },
   } = getImageProps({
@@ -89,7 +82,7 @@ export default function HeroElise({ mobileVariant }) {
   return (
     <section
       id="home"
-      className={`${styles.hero} ${MOBILE_VARIANT_CLASS[mobileVariant] ?? ""} ${titleFont.variable} ${textFont.variable}`}
+      className={`${styles.hero} ${titleFont.variable} ${textFont.variable}`}
     >
       <div className={styles.media}>
         <picture>
@@ -134,7 +127,7 @@ export default function HeroElise({ mobileVariant }) {
             <HeroAction kind="discover" className={styles.btnSecondary}>
               Découvrir HERITAGE
             </HeroAction>
-            {/* Mention validée PO (mission 006) — affichée uniquement en B.1 mobile. */}
+            {/* Mention validée PO — desktop et mobile. */}
             <p className={styles.ctaNote}>Commencez gratuitement, à votre rythme.</p>
           </div>
           <svg

@@ -1,4 +1,5 @@
-// Hero Élise — HERITAGE HOMMAGE
+// Hero Élise — HERITAGE HOMMAGE (version validée PO, mission 008)
+// Desktop : mission 007 · Mobile : B.1 (mission 006).
 // Styles isolés (CSS Module) : aucune règle du template Reeni n'est modifiée.
 // Bascule Master desktop / Master mobile : même valeur que MOBILE_MEDIA dans HeroElise.jsx.
 
@@ -12,7 +13,11 @@ $text-soft: rgba(246, 241, 232, 0.88);
 $champagne-light: #f1cf93;
 $champagne: #dcaa62;
 $champagne-deep: #c48a43;
+$champagne-soft: rgba(236, 214, 174, 0.9);
 $ink: #1c140a;
+
+// Marge latérale commune (Master desktop : texte à ~5,9 % du bord).
+$gutter: max(20px, 5.9vw);
 
 .hero {
   position: relative;
@@ -29,15 +34,17 @@ $ink: #1c140a;
     // hauteur de l'écran ; plancher bas pour ne pas zoomer l'image en 1024 px.
     min-height: max(560px, min(100svh, 56.25vw));
     // Le header Reeni (transparent, 70 px) passe au-dessus. Marge basse
-    // réduite sous 1440 px (mission 007) pour que la mention ne fasse pas
-    // grandir le Hero, donc ne recadre pas le portrait, en 1024 px.
+    // réduite sous 1440 px pour que la mention ne fasse pas grandir le Hero,
+    // donc ne recadre pas le portrait, en 1024 px.
     padding: 110px 0 clamp(50px, 4.86vw, 70px);
   }
 
+  // Mobile : texte, puis portrait, puis CTA et mention dans le noir.
   @media #{$mobile} {
     display: flex;
     flex-direction: column;
-    padding-top: 104px;
+    padding-top: 82px;
+    padding-bottom: 64px;
   }
 }
 
@@ -71,13 +78,31 @@ $ink: #1c140a;
     z-index: 0;
     order: 2;
     width: var(--media-w);
-    // Le haut du Master mobile est noir : on le remonte sous le texte.
-    // Repères du Master (hauteur = 1,777 × largeur) : haut des cheveux 33,5 %,
-    // front 43 %, yeux 52 %. Avec -0,62 × largeur, le front reste toujours
-    // ~0,14 × largeur sous le bouton, quelle que soit la hauteur du texte
-    // (même rapport que la référence mobile).
+    // Portrait entier (aucun recadrage), remonté sous le paragraphe.
+    // Repères du Master mobile (hauteur = 1,777 × largeur) : haut des cheveux
+    // 33,5 %, front 43 %, yeux 52 %, menton 72 %. -0,62 × largeur : mesuré sur
+    // la silhouette des cheveux du Master, laisse 24-34 px entre les mèches et
+    // la fin des lignes de texte de 320 à 430 px.
     margin-top: calc(var(--media-w) * -0.62);
     pointer-events: none;
+
+    // Fondu progressif vers le noir sur le bas du Master (cou et épaules
+    // visibles), noir complet avant le bord : aucune ligne visible.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      bottom: -2px; // couvre la rangée de pixels sous-pixel du bord de l'image
+      height: 20%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.45) 40%,
+        rgba(0, 0, 0, 0.85) 70%,
+        #000 88%
+      );
+      pointer-events: none;
+    }
   }
 
   @media #{$tablet-up} {
@@ -106,16 +131,17 @@ $ink: #1c140a;
 
 /* ---------- Contenu éditorial ---------- */
 
-// Marge gauche calée sur le Master desktop (texte à ~5,9 % du bord, colonne
-// éditoriale dans les 44 % de gauche), indépendamment du conteneur Bootstrap.
+// Desktop : colonne éditoriale dans les 44 % de gauche, indépendante du
+// conteneur Bootstrap. Mobile : conteneurs « transparents » (display: contents)
+// pour que le CTA puisse être placé après le portrait.
 .container {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding-inline: max(20px, 5.9vw);
+  padding-inline: $gutter;
 
   @media #{$mobile} {
-    order: 1;
+    display: contents;
   }
 }
 
@@ -125,8 +151,17 @@ $ink: #1c140a;
   }
 
   @media #{$mobile} {
-    max-width: 560px;
+    display: contents;
   }
+}
+
+// Éléments placés directement dans le flux mobile (texte au-dessus du portrait).
+// Mixin (et non @extend) : les déclarations restent après celles de l'élément.
+@mixin mobile-flow-item {
+  position: relative;
+  z-index: 1;
+  order: 1;
+  margin-inline: $gutter;
 }
 
 .rule {
@@ -138,8 +173,9 @@ $ink: #1c140a;
   margin-bottom: clamp(22px, 2.6vw, 42px);
 
   @media #{$mobile} {
+    @include mobile-flow-item;
     width: 64px;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
   }
 }
 
@@ -154,6 +190,8 @@ $ink: #1c140a;
   text-wrap: balance;
 
   @media #{$mobile} {
+    @include mobile-flow-item;
+    max-width: 560px;
     font-size: clamp(30px, 9.6vw, 46px);
     line-height: 1.08;
   }
@@ -183,9 +221,10 @@ $ink: #1c140a;
   line-height: 1.45;
 
   @media #{$mobile} {
-    margin-top: 14px;
+    @include mobile-flow-item;
+    max-width: 560px;
+    margin-top: 10px;
     font-size: clamp(15.5px, 4.4vw, 19px);
-    line-height: 1.5;
   }
 
   @media (max-width: 359.98px) {
@@ -195,6 +234,8 @@ $ink: #1c140a;
   }
 }
 
+/* ---------- CTA et mention ---------- */
+
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -202,13 +243,22 @@ $ink: #1c140a;
   gap: clamp(14px, 1.6vw, 26px);
   margin-top: clamp(28px, 3.4vw, 56px);
 
+  // Desktop : ligne 1 = les deux boutons côte à côte (comme le Master),
+  // ligne 2 = la mention, alignée à gauche sous « Créer un hommage ».
   @media #{$desktop} {
-    flex-wrap: nowrap;
-    width: max-content; // les deux boutons restent côte à côte, comme le Master
+    display: grid;
+    grid-template-columns: max-content max-content;
+    row-gap: clamp(12px, 1vw, 18px);
+    width: max-content;
   }
 
+  // Mobile : CTA centré après le portrait, avec respiration.
   @media #{$mobile} {
-    margin-top: 24px;
+    @include mobile-flow-item;
+    order: 3;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
   }
 }
 
@@ -288,6 +338,28 @@ $ink: #1c140a;
   }
 }
 
+// « Commencez gratuitement, à votre rythme. » — mention validée PO.
+.ctaNote {
+  display: block;
+  color: $champagne-soft;
+  font-family: var(--hero-elise-text), Georgia, serif;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+
+  @media #{$desktop} {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin: 0;
+    font-size: clamp(15px, 1.1vw, 19px);
+  }
+
+  @media #{$mobile} {
+    margin: 16px 0 0;
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
 .flourish {
   display: block;
   width: clamp(220px, 20vw, 340px);
@@ -296,212 +368,6 @@ $ink: #1c140a;
 
   @media #{$mobile} {
     display: none;
-  }
-}
-
-/* ==========================================================================
-   Mission 005 — variantes mobiles comparées (?hero=a / ?hero=b)
-   Uniquement sous 992 px : le desktop de la mission 004 n'est pas concerné.
-   Repères du Master mobile (hauteur = 1,777 × largeur) : haut des cheveux
-   33,5 %, front 43 %, yeux 52 %, menton 72 %.
-   ========================================================================== */
-
-@media #{$mobile} {
-  /* ---------- Variante A : composition compacte, bouton sous le texte ---------- */
-  .mobileA {
-    padding-top: 82px;
-
-    .rule {
-      margin-bottom: 12px;
-    }
-    .lead {
-      margin-top: 10px;
-      line-height: 1.45;
-    }
-    .actions {
-      margin-top: 18px;
-    }
-    // Portrait remonté : le haut de la chevelure (côté droit) passe derrière
-    // la ligne du bouton ; le front reste ~0,08 × largeur sous le bouton.
-    .media {
-      margin-top: calc(var(--media-w) * -0.68);
-    }
-  }
-
-  /* ---------- Variante B : texte, portrait, puis bouton dans le noir ---------- */
-  .mobileB {
-    padding-top: 82px;
-    padding-bottom: 44px;
-
-    // Le texte et le bouton deviennent des éléments indépendants du Hero,
-    // ce qui permet de placer le bouton après la photo.
-    .container,
-    .content {
-      display: contents;
-    }
-
-    .rule,
-    .title,
-    .lead,
-    .actions {
-      position: relative;
-      z-index: 1;
-      order: 1;
-      margin-inline: max(20px, 5.9vw);
-    }
-    .title,
-    .lead {
-      max-width: 560px;
-    }
-    .rule {
-      margin-bottom: 12px;
-    }
-    .lead {
-      margin-top: 10px;
-      line-height: 1.45;
-    }
-
-    // Portrait remonté juste sous le paragraphe (front ~0,10 × largeur sous
-    // le texte), affiché jusqu'au cou puis fondu dans le noir.
-    .media {
-      order: 2;
-      margin-top: calc(var(--media-w) * -0.66);
-      height: calc(var(--media-w) * 1.53);
-      overflow: hidden;
-
-      &::after {
-        content: "";
-        position: absolute;
-        inset: auto 0 0 0;
-        height: 22%;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000 92%);
-        pointer-events: none;
-      }
-    }
-
-    .actions {
-      order: 3;
-      justify-content: center;
-      margin-top: -22px;
-    }
-  }
-}
-
-/* ==========================================================================
-   Mission 006 — variante B.1 (?hero=b1) : direction B retenue par la PO,
-   portrait complet (cou et épaules), fondu au noir, CTA + mention dessous.
-   ========================================================================== */
-
-// Mention sous le CTA : masquée partout sauf en B.1 mobile.
-.ctaNote {
-  display: none;
-}
-
-@media #{$mobile} {
-  .mobileB1 {
-    padding-top: 82px;
-    padding-bottom: 64px;
-
-    .container,
-    .content {
-      display: contents;
-    }
-
-    .rule,
-    .title,
-    .lead,
-    .actions {
-      position: relative;
-      z-index: 1;
-      order: 1;
-      margin-inline: max(20px, 5.9vw);
-    }
-    .title,
-    .lead {
-      max-width: 560px;
-    }
-    .rule {
-      margin-bottom: 12px;
-    }
-    .lead {
-      margin-top: 10px;
-      line-height: 1.45;
-    }
-
-    // Portrait entier (aucun recadrage), puis fondu vers le noir sur le bas
-    // du Master. Remontée -0,62 (B : -0,66) : mesurée sur la silhouette des
-    // cheveux du Master, elle laisse 24-34 px entre les mèches et la fin des
-    // lignes de texte de 320 à 430 px ; le visage ne descend que de ~16 px.
-    .media {
-      order: 2;
-      margin-top: calc(var(--media-w) * -0.62);
-
-      &::after {
-        content: "";
-        position: absolute;
-        inset: auto 0 0 0;
-        // Fondu progressif, noir complet avant le bord : aucune ligne visible.
-        // -2 px : couvre la rangée de pixels sous-pixel du bord de l'image.
-        bottom: -2px;
-        height: 20%;
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0) 0%,
-          rgba(0, 0, 0, 0.45) 40%,
-          rgba(0, 0, 0, 0.85) 70%,
-          #000 88%
-        );
-        pointer-events: none;
-      }
-    }
-
-    // CTA après la composition photographique, avec respiration.
-    .actions {
-      order: 3;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      margin-top: 40px;
-    }
-
-    .ctaNote {
-      display: block;
-      margin: 16px 0 0;
-      color: rgba(236, 214, 174, 0.9); // champagne doux
-      font-family: var(--hero-elise-text), Georgia, serif;
-      font-size: 16px;
-      line-height: 1.4;
-      letter-spacing: 0.01em;
-      text-align: center;
-    }
-  }
-}
-
-/* ==========================================================================
-   Mission 007 — mention sous le CTA principal, aussi sur desktop.
-   Grille : ligne 1 = les deux boutons (inchangés), ligne 2 = la mention,
-   alignée à gauche sous « Créer un hommage », dans l'axe du titre.
-   Uniquement ≥ 992 px : le mobile (B.1 compris) n'est pas concerné.
-   ========================================================================== */
-
-@media #{$desktop} {
-  .actions {
-    display: grid;
-    grid-template-columns: max-content max-content;
-    align-items: center;
-    row-gap: clamp(12px, 1vw, 18px);
-  }
-
-  .ctaNote {
-    display: block;
-    grid-column: 1 / -1;
-    justify-self: start;
-    margin: 0;
-    color: rgba(236, 214, 174, 0.9); // champagne doux, comme en B.1 mobile
-    font-family: var(--hero-elise-text), Georgia, serif;
-    font-size: clamp(15px, 1.1vw, 19px);
-    line-height: 1.4;
-    letter-spacing: 0.01em;
   }
 }
 
