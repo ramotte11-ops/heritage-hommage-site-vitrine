@@ -16,10 +16,10 @@ export const metadata = {
   description:
     "Personal Portfolio React Nextjs Template | Freelancer & Developer Portfolio",
 };
-// Mission 005 (comparaison PO, provisoire) : ?hero=a ou ?hero=b choisit la
-// variante mobile du Hero Élise. Sans paramètre : version mission 004.
+// Missions 005-006 (comparaison PO, provisoire) : ?hero=a, ?hero=b ou ?hero=b1
+// choisit la variante mobile du Hero Élise. Sans paramètre : version mission 004.
 // À retirer une fois la variante choisie.
-const HERO_MOBILE_VARIANTS = ["a", "b"];
+const HERO_MOBILE_VARIANTS = ["a", "b", "b1"];
 
 export default async function page({ searchParams }) {
   const { hero } = await searchParams;

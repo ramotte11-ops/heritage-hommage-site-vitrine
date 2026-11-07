@@ -58,10 +58,11 @@ function HeroAction({ kind, className, children }) {
   );
 }
 
-// Variantes mobiles comparées en mission 005 (aucun effet sur desktop).
+// Variantes mobiles comparées en missions 005-006 (aucun effet sur desktop).
 const MOBILE_VARIANT_CLASS = {
   a: styles.mobileA,
   b: styles.mobileB,
+  b1: styles.mobileB1,
 };
 
 export default function HeroElise({ mobileVariant }) {
@@ -133,6 +134,8 @@ export default function HeroElise({ mobileVariant }) {
             <HeroAction kind="discover" className={styles.btnSecondary}>
               Découvrir HERITAGE
             </HeroAction>
+            {/* Mention validée PO (mission 006) — affichée uniquement en B.1 mobile. */}
+            <p className={styles.ctaNote}>Commencez gratuitement, à votre rythme.</p>
           </div>
           <svg
             className={`${styles.flourish} tmp-scroll-trigger tmp-fade-in animation-order-5`}
