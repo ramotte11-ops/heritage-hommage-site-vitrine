@@ -1,0 +1,308 @@
+// Hero Élise — HERITAGE HOMMAGE
+// Styles isolés (CSS Module) : aucune règle du template Reeni n'est modifiée.
+// Bascule Master desktop / Master mobile : même valeur que MOBILE_MEDIA dans HeroElise.jsx.
+
+$mobile: "(max-width: 991.98px)";
+$tablet-up: "(min-width: 576px) and (max-width: 991.98px)";
+$desktop: "(min-width: 992px)";
+
+$black: #000;
+$ivory: #f6f1e8;
+$text-soft: rgba(246, 241, 232, 0.88);
+$champagne-light: #f1cf93;
+$champagne: #dcaa62;
+$champagne-deep: #c48a43;
+$ink: #1c140a;
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: $black;
+  color: $ivory;
+  font-family: var(--hero-elise-text), Georgia, "Times New Roman", serif;
+
+  @media #{$desktop} {
+    display: flex;
+    align-items: center;
+    // 16:9 comme le Master (= Master entier, sans recadrage), borné par la
+    // hauteur de l'écran ; plancher bas pour ne pas zoomer l'image en 1024 px.
+    min-height: max(560px, min(100svh, 56.25vw));
+    padding: 110px 0 70px; // le header Reeni (transparent, 70 px) passe au-dessus
+  }
+
+  @media #{$mobile} {
+    display: flex;
+    flex-direction: column;
+    padding-top: 104px;
+  }
+}
+
+/* ---------- Visuel (Master vierge, non retouché) ---------- */
+
+.media {
+  @media #{$desktop} {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    // Voile très léger à gauche : invisible sur le noir du Master,
+    // il ne sert qu'aux largeurs 992-1300 px où le texte touche les cheveux.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.35) 32%,
+        rgba(0, 0, 0, 0) 52%
+      );
+      pointer-events: none;
+    }
+  }
+
+  @media #{$mobile} {
+    --media-w: 100vw;
+    position: relative;
+    z-index: 0;
+    order: 2;
+    width: var(--media-w);
+    // Le haut du Master mobile est noir : on le remonte sous le texte.
+    // Repères du Master (hauteur = 1,777 × largeur) : haut des cheveux 33,5 %,
+    // front 43 %, yeux 52 %. Avec -0,62 × largeur, le front reste toujours
+    // ~0,14 × largeur sous le bouton, quelle que soit la hauteur du texte
+    // (même rapport que la référence mobile).
+    margin-top: calc(var(--media-w) * -0.62);
+    pointer-events: none;
+  }
+
+  @media #{$tablet-up} {
+    --media-w: min(640px, 82vw);
+    margin-left: auto;
+    // Adoucit le bord gauche du Master quand il n'occupe pas toute la largeur.
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 22%);
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+
+  @media #{$desktop} {
+    height: 100%;
+    object-fit: cover;
+    object-position: 80% 25%; // garde le visage si l'écran recadre
+  }
+
+  @media #{$mobile} {
+    height: auto;
+  }
+}
+
+/* ---------- Contenu éditorial ---------- */
+
+// Marge gauche calée sur le Master desktop (texte à ~5,9 % du bord, colonne
+// éditoriale dans les 44 % de gauche), indépendamment du conteneur Bootstrap.
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-inline: max(20px, 5.9vw);
+
+  @media #{$mobile} {
+    order: 1;
+  }
+}
+
+.content {
+  @media #{$desktop} {
+    max-width: 44vw;
+  }
+
+  @media #{$mobile} {
+    max-width: 560px;
+  }
+}
+
+.rule {
+  display: block;
+  width: 84px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, $champagne-deep, $champagne-light);
+  margin-bottom: clamp(22px, 2.6vw, 42px);
+
+  @media #{$mobile} {
+    width: 64px;
+    margin-bottom: 18px;
+  }
+}
+
+.title {
+  margin: 0;
+  color: $ivory;
+  font-family: var(--hero-elise-title), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.06;
+  font-size: clamp(48px, 5.6vw, 104px);
+  text-wrap: balance;
+
+  @media #{$mobile} {
+    font-size: clamp(30px, 9.6vw, 46px);
+    line-height: 1.08;
+  }
+}
+
+.accent {
+  font-style: italic;
+  font-weight: 400;
+  padding-right: 0.06em; // évite que l'italique soit rogné par le dégradé
+  color: $champagne;
+  background: linear-gradient(
+    100deg,
+    $champagne-light 0%,
+    $champagne 45%,
+    $champagne-deep 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lead {
+  margin: clamp(18px, 1.9vw, 30px) 0 0;
+  color: $text-soft;
+  font-family: var(--hero-elise-text), Georgia, serif;
+  font-size: clamp(18px, 1.55vw, 27px);
+  line-height: 1.45;
+
+  @media #{$mobile} {
+    margin-top: 14px;
+    font-size: clamp(15.5px, 4.4vw, 19px);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 359.98px) {
+    br {
+      display: none; // à 320 px on laisse le texte couler naturellement
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 26px);
+  margin-top: clamp(28px, 3.4vw, 56px);
+
+  @media #{$desktop} {
+    flex-wrap: nowrap;
+    width: max-content; // les deux boutons restent côte à côte, comme le Master
+  }
+
+  @media #{$mobile} {
+    margin-top: 24px;
+  }
+}
+
+%btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto; // neutralise « button { width: 100% } » du template
+  max-width: 100%;
+  gap: 0.7em;
+  min-height: 48px;
+  padding: 0.78em 1.75em;
+  border-radius: 999px;
+  font-family: var(--hero-elise-text), Georgia, serif;
+  font-size: clamp(17px, 1.35vw, 23px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease,
+    background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 3px;
+  }
+
+  @media #{$mobile} {
+    font-size: 17px;
+    padding: 0.85em 1.6em;
+  }
+}
+
+.btnPrimary {
+  @extend %btn;
+  color: $ink;
+  border: 0;
+  background: linear-gradient(100deg, #f0cb8c 0%, $champagne 55%, #cf9852 100%);
+  box-shadow: 0 10px 30px -14px rgba(220, 170, 98, 0.7);
+
+  &:hover {
+    color: $ink;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -14px rgba(220, 170, 98, 0.85);
+  }
+
+  &:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+.arrow {
+  display: inline-block;
+  font-family: system-ui, sans-serif;
+  font-size: 1.05em;
+  transition: transform 0.35s ease;
+}
+
+.btnSecondary {
+  @extend %btn;
+  color: $ivory;
+  // Invisible sur le noir du Master ; garde le libellé lisible si le bouton
+  // passe devant les cheveux sur les écrans moins larges.
+  background: rgba(0, 0, 0, 0.3);
+  border: 1.5px solid rgba(246, 241, 232, 0.85);
+
+  &:hover {
+    color: $ink;
+    background: $ivory;
+    border-color: $ivory;
+  }
+
+  // Master mobile : un seul bouton.
+  @media #{$mobile} {
+    display: none;
+  }
+}
+
+.flourish {
+  display: block;
+  width: clamp(220px, 20vw, 340px);
+  height: auto;
+  margin: clamp(18px, 2vw, 34px) 0 0 clamp(40px, 5vw, 90px);
+
+  @media #{$mobile} {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnPrimary,
+  .btnSecondary,
+  .arrow {
+    transition: none;
+  }
+  .btnPrimary:hover {
+    transform: none;
+  }
+}

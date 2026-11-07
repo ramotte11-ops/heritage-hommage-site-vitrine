@@ -2,7 +2,7 @@ import Services3 from "@/components/common/Services3";
 import Header2 from "@/components/headers/Header2";
 import Education from "@/components/common/Education2";
 import About from "@/components/homes/home-9/About";
-import Hero from "@/components/homes/home-9/Hero";
+import Hero from "@/components/heritage/HeroElise";
 import Portfolio from "@/components/homes/home-9/Portfolio";
 import React from "react";
 import Pricing from "@/components/common/Pricing";
