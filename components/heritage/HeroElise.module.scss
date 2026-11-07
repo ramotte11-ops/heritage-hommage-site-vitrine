@@ -28,7 +28,10 @@ $ink: #1c140a;
     // 16:9 comme le Master (= Master entier, sans recadrage), borné par la
     // hauteur de l'écran ; plancher bas pour ne pas zoomer l'image en 1024 px.
     min-height: max(560px, min(100svh, 56.25vw));
-    padding: 110px 0 70px; // le header Reeni (transparent, 70 px) passe au-dessus
+    // Le header Reeni (transparent, 70 px) passe au-dessus. Marge basse
+    // réduite sous 1440 px (mission 007) pour que la mention ne fasse pas
+    // grandir le Hero, donc ne recadre pas le portrait, en 1024 px.
+    padding: 110px 0 clamp(50px, 4.86vw, 70px);
   }
 
   @media #{$mobile} {
@@ -471,6 +474,34 @@ $ink: #1c140a;
       letter-spacing: 0.01em;
       text-align: center;
     }
+  }
+}
+
+/* ==========================================================================
+   Mission 007 — mention sous le CTA principal, aussi sur desktop.
+   Grille : ligne 1 = les deux boutons (inchangés), ligne 2 = la mention,
+   alignée à gauche sous « Créer un hommage », dans l'axe du titre.
+   Uniquement ≥ 992 px : le mobile (B.1 compris) n'est pas concerné.
+   ========================================================================== */
+
+@media #{$desktop} {
+  .actions {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    row-gap: clamp(12px, 1vw, 18px);
+  }
+
+  .ctaNote {
+    display: block;
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin: 0;
+    color: rgba(236, 214, 174, 0.9); // champagne doux, comme en B.1 mobile
+    font-family: var(--hero-elise-text), Georgia, serif;
+    font-size: clamp(15px, 1.1vw, 19px);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
   }
 }
 
