@@ -1,0 +1,395 @@
+// Header HERITAGE — signature B, navigation française, CTA champagne.
+// Styles isolés (CSS Module) : aucune règle du template Reeni n'est modifiée.
+//
+// CONTRAINTE PO : la hauteur du header ne doit pas changer (Hero Élise intact).
+// Hauteurs reprises du header Reeni mesuré en mission 009 :
+//   < 992 px : 71 px · 992-1199 px : 70 px · ≥ 1200 px : 76 px.
+// Le header reste hors du flux (absolute, puis fixed au défilement) :
+// il ne peut pas déplacer le Hero.
+
+$mobile: "(max-width: 991.98px)";
+$desktop: "(min-width: 992px)";
+$wide: "(min-width: 1200px)";
+
+$ivory: #f6f1e8;
+$ivory-soft: rgba(246, 241, 232, 0.82);
+$champagne-name: #ecd2a2; // HERITAGE, champagne clair
+$champagne-light: #f1cf93;
+$champagne: #dcaa62;
+$ink: #1c140a;
+
+// Même marge latérale que le texte du Hero (max(20px, 5.9vw)).
+$gutter: max(20px, 5.9vw);
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 71px;
+  background: transparent;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+
+  @media #{$desktop} {
+    height: 70px;
+  }
+  @media #{$wide} {
+    height: 76px;
+  }
+
+  // Fixe au défilement (au-delà de 150 px) : fond noir profond.
+  // Pas de transform ni de backdrop-filter : le menu mobile (position fixed)
+  // doit rester relatif à l'écran.
+  &.isSticky {
+    position: fixed;
+    background: #050505; // opaque : le contenu défilant ne transparaît pas
+    box-shadow: 0 1px 0 rgba(220, 170, 98, 0.16);
+    animation: headerFadeIn 0.4s ease both;
+  }
+}
+
+@keyframes headerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 100%;
+  padding-inline: $gutter;
+}
+
+/* ---------- Signature ---------- */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.sprig {
+  display: block;
+  width: 40px;
+  height: auto;
+  margin-bottom: 2px;
+
+  @media #{$wide} {
+    width: 44px;
+    margin-bottom: 3px;
+  }
+}
+
+.logoName {
+  display: block;
+  color: $champagne-name;
+  font-family: var(--hh-title), Georgia, serif;
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: 0.14em;
+  // compense l'espacement après la dernière lettre pour un centrage exact
+  margin-right: -0.14em;
+  line-height: 1;
+
+  @media #{$wide} {
+    font-size: 21px;
+  }
+}
+
+.logoSub {
+  display: block;
+  margin-top: 5px;
+  margin-right: -0.5em;
+  color: rgba(246, 241, 232, 0.62);
+  font-family: var(--hh-text), Georgia, serif;
+  font-weight: 400;
+  font-size: 8.5px;
+  letter-spacing: 0.5em;
+  line-height: 1;
+
+  @media #{$wide} {
+    font-size: 9px;
+  }
+}
+
+/* ---------- Navigation desktop ---------- */
+
+.desktopNav {
+  display: none;
+
+  @media #{$desktop} {
+    display: flex;
+    align-items: center;
+    gap: clamp(28px, 3vw, 48px);
+  }
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: clamp(22px, 2.4vw, 40px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Remise à zéro des styles globaux du template sur button / a.
+%reset-control {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navLink {
+  @extend %reset-control;
+  position: relative;
+  color: $ivory-soft;
+  font-family: var(--hh-text), Georgia, serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  // Halo sombre discret : garde les libellés lisibles quand ils passent devant
+  // la chevelure éclairée d'Élise, sans voile sur le portrait.
+  text-shadow: 0 0 14px rgba(0, 0, 0, 0.95), 0 0 5px rgba(0, 0, 0, 0.85),
+    0 1px 2px rgba(0, 0, 0, 0.9);
+  transition: color 0.3s ease;
+
+  // filet champagne discret au survol / focus
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1px;
+    background: $champagne;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $champagne-light;
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+  }
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 6px;
+    border-radius: 2px;
+  }
+}
+
+.cta {
+  @extend %reset-control;
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 22px;
+  border-radius: 999px;
+  color: $ink;
+  background: linear-gradient(100deg, #f0cb8c 0%, $champagne 55%, #cf9852 100%);
+  box-shadow: 0 8px 24px -14px rgba(220, 170, 98, 0.7);
+  font-family: var(--hh-text), Georgia, serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    color: $ink;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -14px rgba(220, 170, 98, 0.85);
+  }
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 3px;
+  }
+}
+
+/* ---------- Bouton menu (mobile) ---------- */
+
+.burger {
+  @extend %reset-control;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; // zone tactile ≥ 44 px
+  height: 44px;
+  margin-right: -10px; // aligne visuellement les traits sur la marge
+  border-radius: 50%;
+
+  @media #{$desktop} {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 0;
+  }
+}
+
+// Deux traits fins champagne, le second plus court.
+.burgerLines {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 9px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: 1.5px;
+    border-radius: 1px;
+    background: $champagne-light;
+  }
+  &::before {
+    top: 0;
+    width: 24px;
+  }
+  &::after {
+    bottom: 0;
+    width: 16px;
+  }
+}
+
+/* ---------- Menu mobile ---------- */
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  background: #030303; // opaque : aucun texte du Hero ne transparaît
+
+  &[hidden] {
+    display: none;
+  }
+
+  // la barre du menu reprend exactement la hauteur du header
+  .bar {
+    flex: 0 0 auto;
+    height: 71px;
+  }
+
+  @media #{$desktop} {
+    display: none;
+  }
+}
+
+.isOpen {
+  animation: headerFadeIn 0.3s ease both;
+}
+
+.close {
+  @extend %reset-control;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  border-radius: 50%;
+  color: $champagne-light;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 0;
+  }
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 40px $gutter 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid rgba(220, 170, 98, 0.14);
+  }
+}
+
+.mobileLink {
+  @extend %reset-control;
+  display: block;
+  width: 100%;
+  padding: 18px 0;
+  color: $ivory;
+  font-family: var(--hh-title), Georgia, serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+
+  &:hover,
+  &:focus-visible {
+    color: $champagne-light;
+  }
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .navLink,
+  .navLink::after,
+  .cta {
+    transition: none;
+  }
+  .header.isSticky,
+  .isOpen {
+    animation: none;
+  }
+}

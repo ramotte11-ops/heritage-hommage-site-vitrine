@@ -1,5 +1,5 @@
 import Services3 from "@/components/common/Services3";
-import Header2 from "@/components/headers/Header2";
+import HeritageHeader from "@/components/heritage/HeritageHeader";
 import Education from "@/components/common/Education2";
 import About from "@/components/homes/home-9/About";
 import Hero from "@/components/heritage/HeroElise";
@@ -9,7 +9,10 @@ import Pricing from "@/components/common/Pricing";
 import Blogs from "@/components/common/Blogs";
 import Contact from "@/components/common/Contact";
 import Footer1 from "@/components/footers/Footer1";
-import CommonComponents from "@/components/common/CommonComponents";
+// Page vitrine HERITAGE : header HERITAGE à la place du header Reeni (Header2),
+// et sans les widgets de démonstration du template (CommonComponents :
+// modale « 44 Pre-built sites », bouton ThemeForest, chat, retour en haut,
+// menus Reeni). Ces composants partagés restent intacts pour les autres pages.
 export const metadata = {
   title:
     "Home 09 || Personal Portfolio React Nextjs Template | Freelancer & Developer Portfolio",
@@ -19,7 +22,7 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      <Header2 />
+      <HeritageHeader />
       <Hero />
       <About />
       <Services3 />
@@ -28,7 +31,7 @@ export default function page() {
       <Pricing />
       <Blogs />
       <Contact parentClass="get-in-touch-area tmp-section-gapBottom" />
-      <Footer1 /> <CommonComponents />
+      <Footer1 />
     </>
   );
 }
