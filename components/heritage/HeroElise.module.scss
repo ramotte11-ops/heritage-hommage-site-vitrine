@@ -296,6 +296,94 @@ $ink: #1c140a;
   }
 }
 
+/* ==========================================================================
+   Mission 005 — variantes mobiles comparées (?hero=a / ?hero=b)
+   Uniquement sous 992 px : le desktop de la mission 004 n'est pas concerné.
+   Repères du Master mobile (hauteur = 1,777 × largeur) : haut des cheveux
+   33,5 %, front 43 %, yeux 52 %, menton 72 %.
+   ========================================================================== */
+
+@media #{$mobile} {
+  /* ---------- Variante A : composition compacte, bouton sous le texte ---------- */
+  .mobileA {
+    padding-top: 82px;
+
+    .rule {
+      margin-bottom: 12px;
+    }
+    .lead {
+      margin-top: 10px;
+      line-height: 1.45;
+    }
+    .actions {
+      margin-top: 18px;
+    }
+    // Portrait remonté : le haut de la chevelure (côté droit) passe derrière
+    // la ligne du bouton ; le front reste ~0,08 × largeur sous le bouton.
+    .media {
+      margin-top: calc(var(--media-w) * -0.68);
+    }
+  }
+
+  /* ---------- Variante B : texte, portrait, puis bouton dans le noir ---------- */
+  .mobileB {
+    padding-top: 82px;
+    padding-bottom: 44px;
+
+    // Le texte et le bouton deviennent des éléments indépendants du Hero,
+    // ce qui permet de placer le bouton après la photo.
+    .container,
+    .content {
+      display: contents;
+    }
+
+    .rule,
+    .title,
+    .lead,
+    .actions {
+      position: relative;
+      z-index: 1;
+      order: 1;
+      margin-inline: max(20px, 5.9vw);
+    }
+    .title,
+    .lead {
+      max-width: 560px;
+    }
+    .rule {
+      margin-bottom: 12px;
+    }
+    .lead {
+      margin-top: 10px;
+      line-height: 1.45;
+    }
+
+    // Portrait remonté juste sous le paragraphe (front ~0,10 × largeur sous
+    // le texte), affiché jusqu'au cou puis fondu dans le noir.
+    .media {
+      order: 2;
+      margin-top: calc(var(--media-w) * -0.66);
+      height: calc(var(--media-w) * 1.53);
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 22%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000 92%);
+        pointer-events: none;
+      }
+    }
+
+    .actions {
+      order: 3;
+      justify-content: center;
+      margin-top: -22px;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btnPrimary,
   .btnSecondary,

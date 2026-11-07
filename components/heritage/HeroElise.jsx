@@ -58,7 +58,13 @@ function HeroAction({ kind, className, children }) {
   );
 }
 
-export default function HeroElise() {
+// Variantes mobiles comparées en mission 005 (aucun effet sur desktop).
+const MOBILE_VARIANT_CLASS = {
+  a: styles.mobileA,
+  b: styles.mobileB,
+};
+
+export default function HeroElise({ mobileVariant }) {
   const {
     props: { srcSet: mobileSrcSet },
   } = getImageProps({
@@ -82,7 +88,7 @@ export default function HeroElise() {
   return (
     <section
       id="home"
-      className={`${styles.hero} ${titleFont.variable} ${textFont.variable}`}
+      className={`${styles.hero} ${MOBILE_VARIANT_CLASS[mobileVariant] ?? ""} ${titleFont.variable} ${textFont.variable}`}
     >
       <div className={styles.media}>
         <picture>

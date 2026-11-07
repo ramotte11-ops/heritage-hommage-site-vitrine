@@ -16,11 +16,18 @@ export const metadata = {
   description:
     "Personal Portfolio React Nextjs Template | Freelancer & Developer Portfolio",
 };
-export default function page() {
+// Mission 005 (comparaison PO, provisoire) : ?hero=a ou ?hero=b choisit la
+// variante mobile du Hero Élise. Sans paramètre : version mission 004.
+// À retirer une fois la variante choisie.
+const HERO_MOBILE_VARIANTS = ["a", "b"];
+
+export default async function page({ searchParams }) {
+  const { hero } = await searchParams;
+  const mobileVariant = HERO_MOBILE_VARIANTS.includes(hero) ? hero : undefined;
   return (
     <>
       <Header2 />
-      <Hero />
+      <Hero mobileVariant={mobileVariant} />
       <About />
       <Services3 />
       <Portfolio />
