@@ -1,4 +1,6 @@
-import Services3 from "@/components/common/Services3";
+// Deuxième section : version HERITAGE locale de Services3 (« Latest Service »),
+// le composant Reeni d'origine reste utilisé par les autres pages.
+import Services3 from "@/components/heritage/HeritageMemories";
 import HeritageHeader from "@/components/heritage/HeritageHeader";
 import Education from "@/components/common/Education2";
 // Première section sous le Hero : version HERITAGE locale de home-9/About
