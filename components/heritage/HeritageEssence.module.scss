@@ -1,0 +1,47 @@
+// Section « Notre essence » — accents HERITAGE sur la structure Reeni.
+// Principe : la section réutilise telles quelles les classes et styles Reeni
+// (_about-us.scss, hov-effect, boutons, titres). Tous les accents roses du
+// template passent par la variable --color-primary : on la redéfinit
+// uniquement à l'intérieur de cette section. Aucune règle Reeni n'est modifiée,
+// aucune autre page n'est concernée.
+
+$champagne: #dcaa62;
+$ink: #1c140a;
+
+.essence {
+  // rose Reeni → champagne HERITAGE (sous-titre, icônes, halo de la grande
+  // carte, effet de survol des cartes, bouton)
+  --color-primary: #{$champagne};
+  --color-primary-alt: rgba(220, 170, 98, 0.85);
+
+  // Grande carte : la phrase garde la typographie Reeni de la carte,
+  // sans la mise en capitales de chaque mot prévue pour « Years Of Experience ».
+  :global(.about-us-left-content-wrap .years-of-experience-card .card-para) {
+    text-transform: none;
+    margin-top: 0;
+  }
+
+  // Icônes posées sur une pastille champagne : encre sombre pour le contraste
+  // (le blanc du template serait illisible sur le champagne).
+  :global(.about-us-section-card .about-us-card .card-head .logo-img) i {
+    color: $ink;
+  }
+
+  // Le bouton est un <button> (destination provisoire) et non un lien comme
+  // dans Reeni : on neutralise « button { width: 100% } » du template pour
+  // garder la largeur d'origine du bouton.
+  :global(.about-btn button.tmp-btn) {
+    width: auto;
+  }
+
+  // Bouton champagne : libellé et flèches en encre sombre (contraste).
+  :global(.about-btn .tmp-btn),
+  :global(.about-btn .tmp-btn:hover),
+  :global(.about-btn .tmp-btn:focus-visible) {
+    color: $ink;
+  }
+  :global(.about-btn .tmp-btn:focus-visible) {
+    outline: 2px solid #f1cf93;
+    outline-offset: 3px;
+  }
+}

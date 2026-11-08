@@ -1,7 +1,9 @@
 import Services3 from "@/components/common/Services3";
 import HeritageHeader from "@/components/heritage/HeritageHeader";
 import Education from "@/components/common/Education2";
-import About from "@/components/homes/home-9/About";
+// Première section sous le Hero : version HERITAGE locale de home-9/About
+// (le composant Reeni d'origine reste utilisé par index-09-white et index-11).
+import About from "@/components/heritage/HeritageEssence";
 import Hero from "@/components/heritage/HeroElise";
 import Portfolio from "@/components/homes/home-9/Portfolio";
 import React from "react";
