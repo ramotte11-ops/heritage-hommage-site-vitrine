@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-     "@popperjs/core": "^2.11.8",
+    "@popperjs/core": "^2.11.8",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.8.1",
     "bootstrap": "^5.0.2",
@@ -22,7 +22,7 @@
     "react-toastify": "^11.0.5",
     "sal.js": "^0.8.5",
     "sass": "^1.86.3",
-    "swiper": "^11.2.6"
+    "swiper": "12.1.2"
   },
   "overrides": {
     "immutable": "5.1.9",
