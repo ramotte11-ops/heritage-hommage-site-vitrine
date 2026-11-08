@@ -56,7 +56,7 @@ export default function HeritageEssence() {
             <div className="about-us-left-content-wrap bg-vactor-one">
               {/* Grande carte : phrase, sans chiffre ni statistique */}
               <div className="years-of-experience-card tmp-scroll-trigger tmp-fade-in animation-order-1">
-                <p className="card-para">Chaque vie mérite d’être racontée.</p>
+                <p className="card-para">Les souvenirs donnent vie aux histoires.</p>
               </div>
               <div className="design-card tmp-scroll-trigger tmp-fade-in animation-order-2">
                 <div className="design-card-img">
