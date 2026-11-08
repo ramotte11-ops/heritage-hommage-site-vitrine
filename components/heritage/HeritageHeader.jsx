@@ -26,7 +26,8 @@ const textFont = EB_Garamond({
 const NAV_ITEMS = [
   { id: "decouvrir", label: "Découvrir", href: null },
   { id: "hommages", label: "Nos hommages", href: null },
-  { id: "fonctionnement", label: "Comment ça marche", href: null },
+  // Mission 013B (autorisation PO) : section « Comment ça marche » de /index-09.
+  { id: "fonctionnement", label: "Comment ça marche", href: "/index-09#comment-ca-marche" },
 ];
 const CTA = { label: "Créer un hommage", href: null }; // même parcours que le Hero
 

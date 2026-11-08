@@ -2,7 +2,9 @@
 // le composant Reeni d'origine reste utilisé par les autres pages.
 import Services3 from "@/components/heritage/HeritageMemories";
 import HeritageHeader from "@/components/heritage/HeritageHeader";
-import Education from "@/components/common/Education2";
+// Quatrième section : version HERITAGE locale d'Education2 (« Comment ça
+// marche ») ; le composant Reeni d'origine reste utilisé par les autres pages.
+import Education from "@/components/heritage/HeritageHowItWorks";
 // Première section sous le Hero : version HERITAGE locale de home-9/About
 // (le composant Reeni d'origine reste utilisé par index-09-white et index-11).
 import About from "@/components/heritage/HeritageEssence";

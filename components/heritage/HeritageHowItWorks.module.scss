@@ -1,0 +1,66 @@
+// Section « Comment ça marche » — accents HERITAGE sur la structure Reeni
+// « Education & Experience » (_education-experience.scss inchangé).
+// Les accents roses du template passent par --color-primary, redéfinie ici.
+
+$champagne: #dcaa62;
+$champagne-soft: #ecd6ae;
+
+.howItWorks {
+  --color-primary: #{$champagne};
+  --color-primary-alt: rgba(220, 170, 98, 0.85);
+
+  // Arrivée depuis le lien du header : le header fixe (≈ 80-90 px) ne doit pas
+  // masquer l'intitulé. Le padding haut Reeni (120 / 80 / 60 px) suffit sur
+  // grand écran ; on ajoute la marge manquante sur tablette et mobile.
+  scroll-margin-top: 0;
+  @media (max-width: 991.98px) {
+    scroll-margin-top: 40px;
+  }
+}
+
+// Liste ordonnée (étapes 01 → 04) : sans puces ni retrait navigateur, la
+// grille Reeni (row g-5) garde ses gouttières.
+.steps {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+// Numéro d'étape : place et typographie du « rôle » Reeni, en champagne.
+.howItWorks .number {
+  display: block;
+  color: $champagne;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+// Titre d'étape : place des dates Reeni, légèrement agrandi pour porter l'étape.
+.howItWorks .stepTitle {
+  font-size: 22px;
+  line-height: 32px;
+  @media (max-width: 575.98px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+// Phrase signature : conclusion des quatre étapes, sans décor.
+.signature {
+  margin: 64px auto 0;
+  max-width: 720px;
+  text-align: center;
+  color: $champagne-soft;
+  font-family: var(--hh-signature), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.4;
+  @media (max-width: 767.98px) {
+    margin-top: 44px;
+    font-size: 22px;
+  }
+}
+
+.signaturePart {
+  white-space: nowrap;
+}
