@@ -7,7 +7,9 @@ import Education from "@/components/common/Education2";
 // (le composant Reeni d'origine reste utilisé par index-09-white et index-11).
 import About from "@/components/heritage/HeritageEssence";
 import Hero from "@/components/heritage/HeroElise";
-import Portfolio from "@/components/homes/home-9/Portfolio";
+// Troisième section : version HERITAGE locale de home-9/Portfolio (avis de
+// décès gratuit) ; le composant Reeni d'origine reste utilisé par les autres pages.
+import Portfolio from "@/components/heritage/HeritageFreeNotice";
 import React from "react";
 import Pricing from "@/components/common/Pricing";
 import Blogs from "@/components/common/Blogs";

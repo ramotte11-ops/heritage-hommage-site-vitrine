@@ -1,0 +1,98 @@
+// Section « Publiez un avis de décès gratuitement » — accents HERITAGE sur la
+// structure Reeni « Latest Portfolio ». Aucune règle Reeni n'est modifiée :
+// les accents passent par --color-primary, redéfinie dans cette section.
+
+$champagne: #dcaa62;
+$champagne-light: #f1cf93;
+$champagne-soft: rgba(236, 214, 174, 0.75);
+$ink: #1c140a;
+
+.freeNotice {
+  --color-primary: #{$champagne};
+  --color-primary-alt: rgba(220, 170, 98, 0.85);
+}
+
+// Composition : la pilule n'est plus au-dessus de l'image, on retire la marge
+// haute prévue par Reeni pour le contenu d'onglets (sinon double espacement).
+.freeNotice :global(.latest-portfolio-tabs-area) .preview {
+  margin-top: 0;
+  // Même noir que le fond du site (body : #060606).
+  background: #060606;
+
+  // Image entière, sans cadre ni fond, au ratio natif.
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    object-fit: contain;
+    // Le noir des compositions s'affiche à 2-4/255, le site à 6/255 : un
+    // rectangle très sombre restait perceptible. En mode « lighten » sur le
+    // fond #060606, seuls les pixels plus sombres que ce fond sont relevés à
+    // 6/255 (écart ≤ 6 niveaux, imperceptible) : les marges se confondent avec
+    // la page, les appareils et leurs écrans restent strictement inchangés.
+    mix-blend-mode: lighten;
+  }
+}
+
+// Sélecteur Clair / Sombre : pilules Reeni (style des filtres), sous l'image.
+.freeNotice :global(.latest-portfolio-tabs-area .nav).switcher {
+  margin-top: 28px;
+
+  :global(.nav-link) {
+    width: auto;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $champagne-light;
+      outline-offset: 3px;
+    }
+  }
+  // Pilule active champagne : texte encre pour le contraste (blanc illisible).
+  :global(.nav-link.active) {
+    color: $ink !important;
+  }
+}
+
+// Bouton principal + mention, centrés sous le sélecteur.
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  text-align: center;
+
+  :global(button.tmp-btn) {
+    width: auto;
+  }
+  // Le bouton Reeni met une majuscule à chaque mot : texte validé conservé tel quel.
+  :global(.tmp-btn .btn-text) {
+    text-transform: none;
+  }
+  :global(.tmp-btn),
+  :global(.tmp-btn:hover),
+  :global(.tmp-btn:focus-visible) {
+    color: $ink;
+  }
+  :global(.tmp-btn:focus-visible) {
+    outline: 2px solid $champagne-light;
+    outline-offset: 3px;
+  }
+}
+
+.note {
+  margin: 18px 0 0;
+  color: var(--color-gray);
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.conditions {
+  margin: 6px 0 0;
+  color: $champagne-soft;
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
