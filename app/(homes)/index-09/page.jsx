@@ -13,7 +13,9 @@ import Hero from "@/components/heritage/HeroElise";
 // décès gratuit) ; le composant Reeni d'origine reste utilisé par les autres pages.
 import Portfolio from "@/components/heritage/HeritageFreeNotice";
 import React from "react";
-import Pricing from "@/components/common/Pricing";
+// Cinquième section : version HERITAGE locale de Pricing (« Nos offres ») ;
+// le composant Reeni d'origine reste utilisé par les autres pages.
+import Pricing from "@/components/heritage/HeritageOffers";
 import Blogs from "@/components/common/Blogs";
 import Contact from "@/components/common/Contact";
 import Footer1 from "@/components/footers/Footer1";

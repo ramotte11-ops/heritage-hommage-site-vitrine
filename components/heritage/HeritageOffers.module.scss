@@ -1,0 +1,147 @@
+// Section « Nos offres » — accents HERITAGE sur la structure Reeni « Price plan »
+// (_pricing.scss, _tmpbutton.scss et hov-effect.scss inchangés).
+// Les accents roses du template passent par --color-primary, redéfinie ici.
+
+$champagne: #dcaa62;
+$champagne-light: #f1cf93;
+$ink: #1c140a;
+
+.offers {
+  --color-primary: #{$champagne};
+  --color-primary-alt: rgba(220, 170, 98, 0.85);
+}
+
+// Nom de l'offre : rôle et style du « price-sub-title » Reeni, porté par un
+// titre (h3) pour la structure du document.
+.offers .name {
+  display: block;
+  margin: 0;
+}
+
+// « Mot-prix » : la zone prix Reeni (48 px) décrit la nature de l'offre ;
+// réduite pour un mot, même police et même graisse que le prix d'origine.
+.offers .nature {
+  margin: 4px 0 2px;
+  font-size: 34px;
+  line-height: 44px;
+  text-transform: none;
+  @media (max-width: 575.98px) {
+    font-size: 28px;
+    line-height: 38px;
+  }
+}
+
+// Précision sous le mot-prix : ligne « per month » Reeni, en champagne doux.
+.offers .detail {
+  margin-bottom: 18px;
+  color: rgba(236, 214, 174, 0.9);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+// Phrase éditoriale de l'offre : typographie des textes Reeni.
+.description {
+  margin: 0 0 28px;
+  color: var(--color-gray);
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  line-height: 26px;
+  @media (max-width: 767.98px) {
+    margin-bottom: 18px;
+  }
+}
+
+// Liste : filet Reeni conservé, marges resserrées (cartes moins longues sur mobile).
+.offers :global(.check-box) {
+  padding-top: 28px;
+  padding-bottom: 32px;
+  @media (max-width: 767.98px) {
+    padding-top: 20px;
+    padding-bottom: 24px;
+  }
+  :global(ul) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  :global(.check-box-item) {
+    align-items: flex-start;
+  }
+  :global(.box-icon) {
+    line-height: 24px;
+  }
+  :global(.box-para) {
+    margin: 0;
+  }
+}
+
+// Carte centrale : l'effet « active » prévu par Reeni n'a aucun rendu dans le
+// template (règle limitée à blur-style-one). Ici : le fond de la carte, visible
+// sur 2 px autour du calque intérieur de tmponhover, devient un fin contour
+// champagne ; halo permanent très discret à l'extérieur.
+.offers .featured {
+  background: linear-gradient(
+    160deg,
+    rgba(220, 170, 98, 0.6),
+    rgba(220, 170, 98, 0.18) 55%,
+    rgba(220, 170, 98, 0.4)
+  );
+  box-shadow: 0 0 70px -18px rgba(220, 170, 98, 0.22);
+
+  // Principe Reeni : la carte centrale est la plus haute. Les descriptions
+  // HERITAGE sont de longueurs proches ; on garantit l'écart par un padding
+  // vertical un peu plus généreux sur les grilles à plusieurs colonnes.
+  @media (min-width: 768px) {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+// Boutons Reeni : libellés validés conservés tels quels, largeur d'origine
+// (le template impose button { width: 100% }).
+.action {
+  :global(button.tmp-btn) {
+    width: auto;
+  }
+  :global(.tmp-btn .btn-text) {
+    text-transform: none;
+  }
+  // Bouton plein champagne (carte centrale) : texte encre pour le contraste.
+  :global(.tmp-btn:not(.btn-border)),
+  :global(.tmp-btn:not(.btn-border):hover),
+  :global(.tmp-btn:not(.btn-border):focus-visible),
+  // Boutons à contour : au survol ils se remplissent de champagne.
+  :global(.tmp-btn.btn-border:hover),
+  :global(.tmp-btn.btn-border:focus-visible) {
+    color: $ink;
+  }
+  :global(.tmp-btn.btn-border:focus-visible) {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  :global(.tmp-btn:focus-visible) {
+    outline: 2px solid $champagne-light;
+    outline-offset: 3px;
+  }
+
+  // Cartes étroites (320 px, tablette 768-991 px) : les libellés longs
+  // passent proprement sur deux lignes au lieu d'être coupés. Sur une ligne,
+  // le bouton garde la hauteur Reeni btn-md (50 px).
+  :global(.tmp-btn.btn-md) {
+    max-width: 100%;
+    height: auto;
+    min-height: 50px;
+    padding: 12px 22px;
+    line-height: 22px;
+    white-space: normal;
+    text-align: left;
+  }
+  :global(.tmp-btn.btn-md .icon-reverse-wrapper),
+  :global(.tmp-btn.btn-md .btn-text),
+  :global(.tmp-btn.btn-md .btn-icon) {
+    line-height: 22px;
+  }
+  :global(.tmp-btn.btn-md .icon-reverse-wrapper) {
+    align-items: center;
+  }
+}
