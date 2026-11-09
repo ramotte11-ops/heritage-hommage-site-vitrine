@@ -1,0 +1,175 @@
+// Footer HERITAGE — compact, mêmes codes que la page : fond noir, filets
+// discrets (--color-border), champagne en accent, polices du header.
+
+$champagne: #dcaa62;
+$champagne-light: #f1cf93;
+$champagne-soft: #ecd6ae;
+
+// Fond : le noir de la page (pas de bloc gris), séparé par un simple filet.
+.footer {
+  border-top: 1px solid var(--color-border);
+  background: transparent;
+  padding: 64px 0 32px;
+
+  @media (max-width: 767.98px) {
+    padding: 48px 0 28px;
+  }
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+
+  @media (max-width: 991.98px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    text-align: center;
+  }
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: 991.98px) {
+    align-items: center;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+// Signature : même voix que la phrase de « Comment ça marche ».
+.signature {
+  margin: 24px 0 0;
+  color: $champagne-soft;
+  font-family: var(--hh-title), Georgia, serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+
+  @media (max-width: 575.98px) {
+    font-size: 19px;
+  }
+}
+
+// Coupure entre les deux phrases sur écran étroit (aucun mot isolé).
+.signaturePart {
+  white-space: nowrap;
+}
+
+.tagline {
+  margin: 6px 0 0;
+  color: var(--color-gray);
+  font-family: var(--font-secondary);
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.navList {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 12px 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    gap: 12px 28px;
+  }
+  @media (max-width: 575.98px) {
+    grid-template-columns: repeat(2, auto);
+    gap: 10px 24px;
+  }
+}
+
+// Liens et boutons « à venir » partagent le même style.
+.navLink,
+.legalLink {
+  display: inline-block;
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-gray);
+  font-family: var(--font-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $champagne;
+  }
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+.navLink {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+
+  @media (max-width: 991.98px) {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 36px;
+  }
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+}
+
+.legalLink {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.copyright {
+  margin: 0;
+  color: rgba(159, 159, 159, 0.75);
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  line-height: 22px;
+}

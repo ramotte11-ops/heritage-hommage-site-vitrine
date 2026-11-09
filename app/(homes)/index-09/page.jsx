@@ -20,8 +20,10 @@ import Pricing from "@/components/heritage/HeritageCommitment";
 // Sixième section : FAQ HERITAGE « Vos questions, nos réponses » à la place de
 // « Blog and news » ; le composant Reeni d'origine reste utilisé par les autres pages.
 import Blogs from "@/components/heritage/HeritageFaq";
-import Contact from "@/components/common/Contact";
-import Footer1 from "@/components/footers/Footer1";
+// Dernières sections : Contact et Footer HERITAGE à la place du formulaire et
+// du footer Reeni ; les composants d'origine restent utilisés par les autres pages.
+import Contact from "@/components/heritage/HeritageContact";
+import Footer1 from "@/components/heritage/HeritageFooter";
 // Page vitrine HERITAGE : header HERITAGE à la place du header Reeni (Header2),
 // et sans les widgets de démonstration du template (CommonComponents :
 // modale « 44 Pre-built sites », bouton ThemeForest, chat, retour en haut,
@@ -43,7 +45,7 @@ export default function page() {
       <Education />
       <Pricing />
       <Blogs />
-      <Contact parentClass="get-in-touch-area tmp-section-gapBottom" />
+      <Contact />
       <Footer1 />
     </>
   );
