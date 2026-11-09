@@ -1,0 +1,170 @@
+// Section « L'engagement HERITAGE » — V1.1 (retour PO).
+// Surface et typographie reprises des cartes « Comment ça marche »
+// (_education-experience.scss inchangé) : noir ardoise --color-gray-2, rayon
+// 20, sans teinte ni lumière. Le champagne n'est qu'un accent : filets,
+// icônes, numéros et bouton.
+
+$champagne: #dcaa62;
+$champagne-light: #f1cf93;
+$ink: #1c140a;
+
+.commitment {
+  --color-primary: #{$champagne};
+  --color-primary-alt: rgba(220, 170, 98, 0.85);
+
+  // Ouverture par l'ancre #engagement : l'intitulé doit arriver sous le header
+  // fixe (≈ 76 px). Le padding Reeni (120 px) suffit sur desktop ; sur
+  // tablette (80 px) et mobile (60 px), on ajoute la marge manquante.
+  scroll-margin-top: 0;
+  @media (max-width: 991.98px) {
+    scroll-margin-top: 24px;
+  }
+  @media (max-width: 767.98px) {
+    scroll-margin-top: 44px;
+  }
+}
+
+// Carte : surface exacte des cartes « Comment ça marche » (classe Reeni
+// education-experience-card) ; seul le padding est adapté à une carte large
+// (le palier Reeni 1200-1599 px descend à 20 px).
+.commitment .panel {
+  max-width: 1040px;
+  height: auto;
+  margin: 0 auto;
+  padding: 48px 48px 44px;
+  text-align: center;
+
+  @media (max-width: 767.98px) {
+    padding: 36px 24px 32px;
+  }
+}
+
+// Trois étapes reliées par un filet champagne discret (desktop et tablette).
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (max-width: 767.98px) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.step {
+  position: relative;
+  margin: 0;
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 26px;
+    left: calc(50% + 40px);
+    width: calc(100% + 32px - 80px);
+    height: 1px;
+    background: rgba(220, 170, 98, 0.28);
+    @media (max-width: 767.98px) {
+      display: none;
+    }
+  }
+}
+
+// Pastille : simple filet champagne, fond de la carte.
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(220, 170, 98, 0.5);
+  color: $champagne;
+  font-size: 19px;
+}
+
+// Numéro, titre et texte : classes Reeni des cartes « Comment ça marche »,
+// mêmes réglages (numéro champagne, titre 22 px). Sélecteurs à 3 classes pour
+// primer sur les règles Reeni « .education-experience-card .edu-* ».
+.commitment .panel .stepNumber {
+  display: block;
+  margin: 14px 0 2px;
+  color: $champagne;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.commitment .panel .stepTitle {
+  font-size: 22px;
+  line-height: 32px;
+}
+
+.commitment .panel .stepText {
+  max-width: 260px;
+  margin: 6px auto 0;
+  line-height: 26px;
+}
+
+// Bouton champagne Reeni et mention.
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 36px;
+  border-top: 1px solid var(--color-border);
+
+  @media (max-width: 767.98px) {
+    margin-top: 32px;
+    padding-top: 28px;
+  }
+}
+
+.commitment button.button,
+.commitment a.button {
+  width: auto;
+  max-width: 100%;
+  color: $ink;
+
+  &:hover,
+  &:focus-visible {
+    color: $ink;
+  }
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 3px;
+  }
+  :global(.btn-text) {
+    text-transform: none;
+  }
+
+  // 320 px : padding et police resserrés ; retour à la ligne propre en dernier
+  // recours plutôt qu'un libellé qui dépasse.
+  @media (max-width: 374.98px) {
+    height: auto;
+    min-height: 56px;
+    padding: 14px 18px;
+    font-size: 15px;
+    line-height: 24px;
+    white-space: normal;
+    :global(.icon-reverse-wrapper),
+    :global(.btn-text),
+    :global(.btn-icon) {
+      line-height: 24px;
+    }
+    :global(.icon-reverse-wrapper) {
+      align-items: center;
+    }
+  }
+}
+
+.note {
+  margin: 16px auto 0;
+  max-width: 560px;
+  color: var(--color-gray);
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  line-height: 22px;
+}
