@@ -17,7 +17,9 @@ import React from "react";
 // Builder avant tout achat). Elle remplace « Nos offres » (HeritageOffers,
 // conservée dans le dépôt) ; le Pricing Reeni reste utilisé par les autres pages.
 import Pricing from "@/components/heritage/HeritageCommitment";
-import Blogs from "@/components/common/Blogs";
+// Sixième section : FAQ HERITAGE « Vos questions, nos réponses » à la place de
+// « Blog and news » ; le composant Reeni d'origine reste utilisé par les autres pages.
+import Blogs from "@/components/heritage/HeritageFaq";
 import Contact from "@/components/common/Contact";
 import Footer1 from "@/components/footers/Footer1";
 // Page vitrine HERITAGE : header HERITAGE à la place du header Reeni (Header2),
