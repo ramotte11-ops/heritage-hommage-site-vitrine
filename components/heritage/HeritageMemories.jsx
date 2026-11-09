@@ -69,7 +69,6 @@ export default function HeritageMemories() {
           <div className="col-lg-6">
             <div className="service-card-user-image">
               <Image
-                className="tmp-scroll-trigger tmp-zoom-in animation-order-1"
                 alt="Album de famille ancien ouvert sur des photographies de moments partagés"
                 src="/assets/images/heritage/album-memoires-v2.png"
                 width={1134}
