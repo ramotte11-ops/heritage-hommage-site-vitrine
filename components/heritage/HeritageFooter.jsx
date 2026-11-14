@@ -3,6 +3,7 @@ import { Playfair_Display, EB_Garamond } from "next/font/google";
 import { toast } from "react-toastify";
 import HeritageLogo from "./HeritageLogo";
 import styles from "./HeritageFooter.module.scss";
+import { LEGAL_DOCUMENTS } from "@/data/heritage-legal";
 
 // Footer HERITAGE — remplace sur /index-09 le Footer Reeni
 // (components/footers/Footer1.jsx, laissé intact pour les autres pages).
@@ -22,13 +23,14 @@ const textFont = EB_Garamond({
   variable: "--hh-text",
 });
 
-// Navigation vers les sections réelles de la page.
+// Navigation vers les sections réelles de la landing (adresses absolues :
+// le footer est aussi affiché sur les pages d'information).
 const NAV = [
-  { label: "Accueil", href: "#home" },
-  { label: "Comment ça marche", href: "#comment-ca-marche" },
-  { label: "Notre engagement", href: "#engagement" },
-  { label: "Questions fréquentes", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Accueil", href: "/#home" },
+  { label: "Comment ça marche", href: "/#comment-ca-marche" },
+  { label: "Notre engagement", href: "/#engagement" },
+  { label: "Questions fréquentes", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 // Destinations pas encore disponibles : aucun faux lien. Tant que href vaut
@@ -40,11 +42,13 @@ const PARTNERS = {
   pending: "L’espace partenaires sera bientôt disponible.",
 };
 const LEGAL_PENDING = "Cette page sera disponible avant la mise en ligne du site.";
-const LEGAL = [
-  { label: "Mentions légales", href: null },
-  { label: "Confidentialité", href: null },
-  { label: "Conditions d’utilisation", href: null },
-];
+// Mission site vitrine : quatre accès vers les pages d'information
+// (versions de travail, data/heritage-legal.js). Remettre href à null
+// masque à nouveau une page derrière le message provisoire.
+const LEGAL = LEGAL_DOCUMENTS.map((doc) => ({
+  label: doc.label,
+  href: `/informations/${doc.slug}`,
+}));
 
 function PendingLink({ item, className, pending }) {
   if (item.href) {
@@ -71,7 +75,7 @@ export default function HeritageFooter() {
       <div className="container">
         <div className={styles.main}>
           <div className={styles.identity}>
-            <a href="#home" className={styles.brand} aria-label="HERITAGE Hommage — haut de page">
+            <a href="/#home" className={styles.brand} aria-label="HERITAGE Hommage — haut de page">
               <HeritageLogo />
             </a>
             <p className={styles.signature}>

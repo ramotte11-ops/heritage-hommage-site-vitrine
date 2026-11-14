@@ -4,6 +4,7 @@ import { getImageProps } from "next/image";
 import { Playfair_Display, EB_Garamond } from "next/font/google";
 import { toast } from "react-toastify";
 import styles from "./HeroElise.module.scss";
+import { BUILDER_CREATE_URL } from "./heritage-links";
 
 // Polices auto-hébergées par Next (aucune requête vers Google côté visiteur).
 const titleFont = Playfair_Display({
@@ -19,12 +20,11 @@ const textFont = EB_Garamond({
   variable: "--hero-elise-text",
 });
 
-// Destinations des boutons : pas encore définies par le QG HERITAGE.
-// Tant qu'une valeur est null, le bouton reste un <button> sans lien
-// et affiche un message « bientôt disponible ». Renseigner l'URL ici
-// suffit à le transformer en vrai lien.
+// Destinations des boutons. Tant qu'une valeur est null, le bouton reste un
+// <button> sans lien et affiche un message « bientôt disponible ».
+// Mission site vitrine : « Créer un hommage » ouvre le Builder existant.
 const DESTINATIONS = {
-  create: null, // ex. URL du Builder HERITAGE
+  create: BUILDER_CREATE_URL,
   discover: null, // ex. page de présentation HERITAGE
 };
 
