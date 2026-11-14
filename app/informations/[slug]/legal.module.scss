@@ -1,0 +1,164 @@
+// Pages d'information HERITAGE — mêmes codes que la landing : fond noir,
+// texte gris, champagne en accent, polices du header et du footer.
+
+$champagne: #dcaa62;
+$champagne-light: #f1cf93;
+$champagne-soft: #ecd6ae;
+
+.page {
+  min-height: 100vh;
+  // Noir de la page (body : --color-secondary), comme la landing.
+  background: var(--color-secondary, #060606);
+}
+
+.top {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brand {
+  display: inline-flex;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid $champagne-light;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+.main {
+  padding: 56px 0 72px;
+
+  @media (max-width: 767.98px) {
+    padding: 40px 0 56px;
+  }
+}
+
+.article {
+  max-width: 780px;
+  margin: 0 auto;
+  color: var(--color-gray);
+  font-family: var(--hh-text), Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.draft {
+  margin: 0 0 40px;
+  padding: 16px 20px;
+  border: 1px solid rgba(220, 170, 98, 0.45);
+  border-radius: 10px;
+  background: rgba(220, 170, 98, 0.08);
+  color: $champagne-soft;
+  font-size: 16px;
+  line-height: 1.6;
+
+  strong {
+    color: $champagne-light;
+    font-weight: 500;
+  }
+}
+
+.title {
+  margin: 0;
+  color: var(--color-heading, #fff);
+  font-family: var(--hh-title), Georgia, serif;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.2;
+
+  @media (max-width: 575.98px) {
+    font-size: 34px;
+  }
+}
+
+.subtitle {
+  margin: 12px 0 0;
+  color: $champagne;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.meta {
+  margin: 8px 0 32px;
+  font-size: 15px;
+  color: rgba(159, 159, 159, 0.8);
+}
+
+.h2 {
+  margin: 40px 0 12px;
+  color: var(--color-heading, #fff);
+  font-family: var(--hh-title), Georgia, serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.3;
+}
+
+.h3 {
+  margin: 24px 0 6px;
+  color: $champagne-soft;
+  font-family: var(--hh-text), Georgia, serif;
+  font-weight: 500;
+  font-size: 19px;
+}
+
+.p {
+  margin: 0 0 12px;
+  white-space: pre-line;
+}
+
+.list {
+  margin: 0 0 16px;
+  padding-left: 22px;
+
+  li {
+    margin: 0 0 4px;
+  }
+
+  li::marker {
+    color: $champagne;
+  }
+}
+
+.tableWrap {
+  margin: 16px 0 24px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+
+  th,
+  td {
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: $champagne-soft;
+    font-weight: 500;
+  }
+}
+
+.back {
+  margin: 48px 0 0;
+
+  a {
+    color: $champagne;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: $champagne-light;
+    text-decoration: underline;
+  }
+}

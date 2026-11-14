@@ -5,6 +5,7 @@ import { Playfair_Display, EB_Garamond } from "next/font/google";
 import { toast } from "react-toastify";
 import HeritageLogo from "./HeritageLogo";
 import styles from "./HeritageHeader.module.scss";
+import { BUILDER_CREATE_URL } from "./heritage-links";
 
 // Mêmes polices que le Hero Élise (fichiers identiques, servis une seule fois).
 const titleFont = Playfair_Display({
@@ -27,9 +28,9 @@ const NAV_ITEMS = [
   { id: "decouvrir", label: "Découvrir", href: null },
   { id: "hommages", label: "Nos hommages", href: null },
   // Mission 013B (autorisation PO) : section « Comment ça marche » de /index-09.
-  { id: "fonctionnement", label: "Comment ça marche", href: "/index-09#comment-ca-marche" },
+  { id: "fonctionnement", label: "Comment ça marche", href: "/#comment-ca-marche" },
 ];
-const CTA = { label: "Créer un hommage", href: null }; // même parcours que le Hero
+const CTA = { label: "Créer un hommage", href: BUILDER_CREATE_URL }; // même parcours que le Hero
 
 const PENDING_SECTION = "Cette section arrive bientôt.";
 const PENDING_CTA = "La création d’hommage sera bientôt disponible.";

@@ -1,6 +1,7 @@
 "use client";
 import { toast } from "react-toastify";
 import styles from "./HeritageCommitment.module.scss";
+import { BUILDER_CREATE_URL } from "./heritage-links";
 
 // Section « L'engagement HERITAGE » — remplace sur /index-09 la section des
 // trois offres (HeritageOffers, conservée dans le dépôt). Décision PO : parler
@@ -17,7 +18,7 @@ import styles from "./HeritageCommitment.module.scss";
 // Renseigner href avec l'adresse validée par le QG suffit à le raccorder.
 const CTA = {
   label: "Commencer gratuitement",
-  href: null,
+  href: BUILDER_CREATE_URL, // mission site vitrine : Builder existant (/creer)
   pending: "La création d’hommage sera bientôt disponible.",
 };
 

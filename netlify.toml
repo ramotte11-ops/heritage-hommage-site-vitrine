@@ -1,0 +1,14 @@
+# HERITAGE — site vitrine (projet Netlify DISTINCT du Builder « hommages »).
+# Ne jamais lier ce dépôt au projet « hommages » : il écraserait le Builder.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Phase privée : accès protégé sur TOUTES les adresses, fichiers statiques
+# compris. Retirer ce bloc uniquement sur GO QG/PO d'ouverture publique.
+[[edge_functions]]
+  path = "/*"
+  function = "private-access"

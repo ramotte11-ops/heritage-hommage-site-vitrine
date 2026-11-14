@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getImageProps } from "next/image";
 import { toast } from "react-toastify";
 import styles from "./HeritageFreeNotice.module.scss";
+import { BUILDER_CREATE_URL } from "./heritage-links";
 
 // Section « Publiez un avis de décès gratuitement » — transformation HERITAGE de
 // la section Reeni « Latest Portfolio » (components/homes/home-9/Portfolio.jsx,
@@ -16,7 +17,7 @@ import styles from "./HeritageFreeNotice.module.scss";
 
 // Builder HERITAGE pas encore raccordé : bouton provisoire « bientôt
 // disponible », comme les autres CTA du site. Renseigner href pour le raccorder.
-const CTA = { label: "Créer mon avis de décès gratuit", href: null };
+const CTA = { label: "Créer mon avis de décès gratuit", href: BUILDER_CREATE_URL }; // Builder unique
 
 // Mobile (< 768 px) : option M2 validée PO — mêmes compositions, seules les
 // marges noires vides sont réduites (recadrage identique pour Light et Dark,
