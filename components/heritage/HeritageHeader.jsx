@@ -5,7 +5,6 @@ import { Playfair_Display, EB_Garamond } from "next/font/google";
 import { toast } from "react-toastify";
 import HeritageLogo from "./HeritageLogo";
 import styles from "./HeritageHeader.module.scss";
-import { BUILDER_CREATE_URL } from "./heritage-links";
 
 // Mêmes polices que le Hero Élise (fichiers identiques, servis une seule fois).
 const titleFont = Playfair_Display({
@@ -30,10 +29,13 @@ const NAV_ITEMS = [
   // Mission 013B (autorisation PO) : section « Comment ça marche » de /index-09.
   { id: "fonctionnement", label: "Comment ça marche", href: "/#comment-ca-marche" },
 ];
-const CTA = { label: "Créer un hommage", href: BUILDER_CREATE_URL }; // même parcours que le Hero
+const OWNER_SPACE = {
+  id: "owner-space",
+  label: "Mon espace",
+  href: "https://hommages.netlify.app/owner",
+};
 
 const PENDING_SECTION = "Cette section arrive bientôt.";
-const PENDING_CTA = "La création d’hommage sera bientôt disponible.";
 
 // Même seuil que le header Reeni d'origine (LayoutWrapper).
 const STICKY_OFFSET = 150;
@@ -147,7 +149,7 @@ export default function HeritageHeader() {
               </li>
             ))}
           </ul>
-          <NavEntry item={CTA} className={styles.cta} pendingMessage={PENDING_CTA} />
+          <NavEntry item={OWNER_SPACE} className={styles.cta} />
         </nav>
 
         <button
@@ -198,6 +200,13 @@ export default function HeritageHeader() {
                 />
               </li>
             ))}
+            <li>
+              <NavEntry
+                item={OWNER_SPACE}
+                className={styles.mobileLink}
+                onNavigate={() => closeMenu(false)}
+              />
+            </li>
           </ul>
         </nav>
       </div>
